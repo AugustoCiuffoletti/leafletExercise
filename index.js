@@ -1,6 +1,5 @@
 import './style.css';
 
-const appDiv = document.getElementById('app');
 var mymap = L.map('mapid',{
   center: L.latLng(43.7229, 10.3966), 
   zoom: 15,
