@@ -8,16 +8,21 @@ var mappa = L.map("mapid", {
   zoom: 15,
   layers: [L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")]
 });
-function stampaCoordinate() {
-  let s = "";
-  for (i in coordinate ) {
-    s += (i+1) + ": " + coordinate[i].lat.toFixed(2) + ", " + coordinate[i].lat.toFixed(2) + "<br>";
+function visualizzaCoordinate() {
+  elencoCoordinate.innerHTML = "";
+  for (let i in coordinate) {
+    elencoCoordinate.innerHTML +=
+      (Number(i)+1) +
+      ": " +
+      coordinate[i].lat.toFixed(5) +
+      ", " +
+      coordinate[i].lng.toFixed(5) +
+      "<br>";
   }
-  return s;
 }
 mappa.on("click", e => {
   L.marker(e.latlng, { title: n }).addTo(mappa);
   coordinate.push(e.latlng);
-  elencoCoordinate.innerHTML=stampaCoordinate();
+  visualizzaCoordinate();
   n++;
 });
