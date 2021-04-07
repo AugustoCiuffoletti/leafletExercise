@@ -1,6 +1,6 @@
 import './style.css';
 
-var mappa = L.map('mapid',{
+L.map('mapid',{
   center: L.latLng(43.72301, 10.39663), 
   zoom: 15,
   layers: [
