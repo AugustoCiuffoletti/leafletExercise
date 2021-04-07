@@ -5,6 +5,7 @@ var apiKey = "f40aade2";
 var URL = 'https://api.keyvalue.xyz/' + apiKey + '/myKey'
 var elencoCoordinate = document.getElementById("coord");
 var bottoneSalva = document.getElementById("bottoneRegistra");
+var bottoneCarica = document.getElementById("bottoneCarica");
 
 var coordinate = [];
 var mappa = L.map("mapid", {
@@ -40,4 +41,17 @@ bottoneSalva.onclick = e => {
     },
     body: JSON.stringify(coordinate)
   });
+};
+
+bottoneCarica.onclick = e => {
+  fetch('https://api.keyvalue.xyz/f40aade2/myKey')
+  .then( (response) => response.json() )
+  .then( (dati) => {
+    for ( let i in dati ) {
+      let c = L.latLng(dati[i]);
+      L.marker( c, { title: i }).addTo(mappa);
+      coordinate.push(c);
+      visualizzaCoordinate();
+    }
+  } )
 };
