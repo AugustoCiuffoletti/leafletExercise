@@ -7,7 +7,7 @@ var mymap = L.map('mapid',{
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
       ]}
 );
-var m = L.marker([43.72, 10.40])
+var mappa = L.marker([43.72, 10.40])
   .addTo(mymap);
-m.bindPopup("<b>Arrotondiamo!</b><br>Questo punto ha le coordinate arrotondate.");
-m.openPopup();
+mappa.bindPopup("<b>Arrotondiamo!</b><br>Questo punto ha le coordinate arrotondate.");
+mappa.openPopup();
