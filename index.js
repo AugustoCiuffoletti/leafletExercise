@@ -7,3 +7,5 @@ var mymap = L.map('mapid',{
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
       ]}
 );
+L.marker([43.72, 10.40])
+  .addTo(mymap);
