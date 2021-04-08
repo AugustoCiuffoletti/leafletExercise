@@ -39,7 +39,6 @@ mappa.on("click", e => {
   };
   featuresCollection.features.push(feature);
   //visualizzaCoordinate();
-  console.log(featuresCollection);
   n++;
 });
 
