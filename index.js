@@ -44,6 +44,7 @@ bottoneSalva.onclick = e => {
 };
 
 bottoneCarica.onclick = e => {
+  coordinate = [];
   fetch('https://api.keyvalue.xyz/f40aade2/myKey')
   .then( (response) => response.json() )
   .then( (dati) => {
