@@ -1,8 +1,7 @@
 import "./style.css";
 
 var n = 1;
-var apiKey = "f40aade2";
-var URL = 'https://api.keyvalue.xyz/' + apiKey + '/myKey'
+var apiKey = "";
 var elencoCoordinate = document.getElementById("coord");
 var bottoneSalva = document.getElementById("bottoneRegistra");
 var bottoneCarica = document.getElementById("bottoneCarica");
@@ -34,24 +33,27 @@ mappa.on("click", e => {
 });
 
 bottoneSalva.onclick = e => {
-  fetch('https://api.keyvalue.xyz/f40aade2/myKey', {
-    method: 'POST',
+  let apiKey = document.getElementById("key").value;
+  fetch("https://api.keyvalue.xyz/" + apiKey + "/myKey", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json;charset=utf-8'
+      "Content-Type": "application/json;charset=utf-8"
     },
     body: JSON.stringify(coordinate)
   });
 };
 
 bottoneCarica.onclick = e => {
-  fetch('https://api.keyvalue.xyz/f40aade2/myKey')
-  .then( (response) => response.json() )
-  .then( (dati) => {
-    for ( let i in dati ) {
-      let c = L.latLng(dati[i]);
-      L.marker( c, { title: i }).addTo(mappa);
-      coordinate.push(c);
-      visualizzaCoordinate();
-    }
-  } )
+  coordinate = [];
+  let apiKey = document.getElementById("key").value;
+  fetch("https://api.keyvalue.xyz/" + apiKey + "/myKey")
+    .then(response => response.json())
+    .then(dati => {
+      for (let i in dati) {
+        let c = L.latLng(dati[i]);
+        L.marker(c, { title: i }).addTo(mappa);
+        coordinate.push(c);
+        visualizzaCoordinate();
+      }
+    });
 };
