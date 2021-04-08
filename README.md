@@ -12,4 +12,5 @@ The *index.js* contains one call to the library (*L* is the name for *leaflet* i
 Once the map is on display you can drag and zoom in/out using the mouse.
 
 Tp experiment, go to the *map* documentation and try some of the other (many) options available.
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/js-6zeg89)
+
+Next select the *popup* branch to move to the next step.
