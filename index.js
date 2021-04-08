@@ -17,19 +17,19 @@ var mappa = L.map("mapid", {
 function visualizzaCoordinate() {
   elencoCoordinate.innerHTML = "";
   for (let i in featuresCollection.features) {
+    let f = featuresCollection.features[i];
     elencoCoordinate.innerHTML +=
       Number(i) +
       1 +
       ": " +
-      featuresCollection.features[i].lat.toFixed(5) +
+      f.geometry.coordinates[1].toFixed(5) +
       ", " +
-      featuresCollection.features[i].lng.toFixed(5) +
+      f.geometry.coordinates[0].toFixed(5) +
       "<br>";
   }
 }
 mappa.on("click", e => {
   let x = L.marker(e.latlng, { title: n }).addTo(mappa);
-  console.log(x);
   let feature = {};
   feature.type = "Feature";
   feature.title = n;
@@ -38,7 +38,7 @@ mappa.on("click", e => {
     coordinates: [e.latlng.lng, e.latlng.lat]
   };
   featuresCollection.features.push(feature);
-  //visualizzaCoordinate();
+  visualizzaCoordinate();
   n++;
 });
 
@@ -60,6 +60,7 @@ bottoneCarica.onclick = e => {
     .then(response => response.json())
     .then(dati => {
       featuresCollection = dati;
+      visualizzaCoordinate();
       L.geoJSON(featuresCollection, {
         onEachFeature: (f, l) => (l.options.title = f.title)
       }).addTo(mappa);
