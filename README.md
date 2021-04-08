@@ -6,7 +6,7 @@ The marker places will be indicated with a mouse click, and the corresponding co
 
 To obtain this result we need to add to the HTML a new *div* where to store the coordinates of the markers.
 
-In the JavaScript code we need to modify the function associated to the click event. The first line creates a new marker in the click position and displays it. The second one attaches to the displayed coordinates those of the new marker.
+In the JavaScript code we need to modify the function associated to the click event. The first line creates a new marker in the click position and displays it. The second one attaches to the displayed coordinates those of the new marker. Tha longitude and the latitude are extracted form the event description, and their precision is reduced to five digits to improve readability. 
 
 To test your HTML skills you can try to improve the visualization of the coordinates by includung them in a HTML table.
 
