@@ -28,16 +28,18 @@ function visualizzaCoordinate() {
   }
 }
 mappa.on("click", e => {
-  L.marker(e.latlng, { title: n }).addTo(mappa);
+  let x = L.marker(e.latlng, { title: n }).addTo(mappa);
+  console.log(x);
   let feature = {};
   feature.type = "Feature";
-  feature.title = n;
+  feature.title = String(n);
   feature.geometry = {
     type: "Point",
     coordinates: [e.latlng.lng, e.latlng.lat]
   };
   featuresCollection.features.push(feature);
   //visualizzaCoordinate();
+  console.log(featuresCollection);
   n++;
 });
 
@@ -59,7 +61,9 @@ bottoneCarica.onclick = e => {
     .then(response => response.json())
     .then(dati => {
       featuresCollection = dati;
-      L.geoJSON(featuresCollection).addTo(mappa);
+      L.geoJSON(featuresCollection, {
+        onEachFeature: (f, l) => l.options.title = f.title
+      }).addTo(mappa);
       n = featuresCollection.features.length + 1;
     });
 };
