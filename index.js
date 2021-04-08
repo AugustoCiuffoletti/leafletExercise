@@ -32,7 +32,7 @@ mappa.on("click", e => {
   console.log(x);
   let feature = {};
   feature.type = "Feature";
-  feature.title = String(n);
+  feature.title = n;
   feature.geometry = {
     type: "Point",
     coordinates: [e.latlng.lng, e.latlng.lat]
@@ -62,7 +62,7 @@ bottoneCarica.onclick = e => {
     .then(dati => {
       featuresCollection = dati;
       L.geoJSON(featuresCollection, {
-        onEachFeature: (f, l) => l.options.title = f.title
+        onEachFeature: (f, l) => (l.options.title = f.title)
       }).addTo(mappa);
       n = featuresCollection.features.length + 1;
     });
