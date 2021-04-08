@@ -6,7 +6,9 @@ var elencoCoordinate = document.getElementById("coord");
 var bottoneSalva = document.getElementById("bottoneRegistra");
 var bottoneCarica = document.getElementById("bottoneCarica");
 
-var coordinate = [];
+var featuresCollection = {};
+featuresCollection.type = "FeatureCollection";
+featuresCollection.features = [];
 var mappa = L.map("mapid", {
   center: L.latLng(43.72301, 10.39663),
   zoom: 15,
@@ -14,21 +16,28 @@ var mappa = L.map("mapid", {
 });
 function visualizzaCoordinate() {
   elencoCoordinate.innerHTML = "";
-  for (let i in coordinate) {
+  for (let i in featuresCollection.features) {
     elencoCoordinate.innerHTML +=
       Number(i) +
       1 +
       ": " +
-      coordinate[i].lat.toFixed(5) +
+      featuresCollection.features[i].lat.toFixed(5) +
       ", " +
-      coordinate[i].lng.toFixed(5) +
+      featuresCollection.features[i].lng.toFixed(5) +
       "<br>";
   }
 }
 mappa.on("click", e => {
   L.marker(e.latlng, { title: n }).addTo(mappa);
-  coordinate.push(e.latlng);
-  visualizzaCoordinate();
+  let feature = {};
+  feature.type = "Feature";
+  feature.title = n;
+  feature.geometry = {
+    type: "Point",
+    coordinates: [e.latlng.lng, e.latlng.lat]
+  };
+  featuresCollection.features.push(feature);
+  //visualizzaCoordinate();
   n++;
 });
 
@@ -39,21 +48,18 @@ bottoneSalva.onclick = e => {
     headers: {
       "Content-Type": "application/json;charset=utf-8"
     },
-    body: JSON.stringify(coordinate)
+    body: JSON.stringify(featuresCollection)
   });
 };
 
 bottoneCarica.onclick = e => {
-  coordinate = [];
+  featuresCollection = {};
   let apiKey = document.getElementById("key").value;
   fetch("https://api.keyvalue.xyz/" + apiKey + "/myKey")
     .then(response => response.json())
     .then(dati => {
-      for (let i in dati) {
-        let c = L.latLng(dati[i]);
-        L.marker(c, { title: i }).addTo(mappa);
-        coordinate.push(c);
-        visualizzaCoordinate();
-      }
+      featuresCollection = dati;
+      L.geoJSON(featuresCollection).addTo(mappa);
+      n = featuresCollection.features.length + 1;
     });
 };
