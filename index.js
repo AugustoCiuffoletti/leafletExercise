@@ -8,4 +8,5 @@ var mappa = L.map('mapid',{
       ]}
 );
 mappa.on('click', e =>
-  {alert("Hai puntato " + e.latlng.lat + "," + e.latlng.lng)});
+  alert("Hai puntato " + e.latlng.lat + "," + e.latlng.lng)
+  );
