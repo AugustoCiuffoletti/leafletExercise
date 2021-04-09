@@ -44,6 +44,7 @@ bottoneCarica.onclick = e => {
   .then( response => response.json() )
   .then( dati => {
     coordinate = dati;
+    n = coordinate.length + 1;
     for ( let i in coordinate ) {
       let c = L.latLng(coordinate[i]);
       L.marker( c, { title: i }).addTo(mappa);
