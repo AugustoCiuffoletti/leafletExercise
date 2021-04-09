@@ -8,4 +8,4 @@ Each time the array is modified we want to completely refresh our display, not i
 
 The function associated to a mouse click is simplified, since we moved the string construction in the new function. The coordinates of the new marker are simply pushed in tha array, before calling the display of the whole array.
 
-Howerver, the data collected in our web app is volatile: as soon as we reload the page all data are lost. We need to provide a cloud storage so that they are persistent and possibly shareable among users. Tjis is the goal of the next step, in the *Save* branch.
+Howerver, the data collected in our web app is volatile: as soon as we reload the page all data are lost. We need to provide a cloud storage so that they are persistent and possibly shareable among users. This is the goal of the next step, in the *createStorage* branch.
