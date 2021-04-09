@@ -1,4 +1,4 @@
-# Step 7: download from the storage
+# Step 8: download from the storage
 
 To download our data we need a new button to trigger the operation, and a function attached to the click event.
 
