@@ -22,6 +22,7 @@ function visualizzaCoordinate() {
       "<br>";
   }
 }
+
 mappa.on("click", e => {
   L.marker(e.latlng, { title: n }).addTo(mappa);
   coordinate.push(e.latlng);
