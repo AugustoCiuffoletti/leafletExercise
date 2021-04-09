@@ -1,7 +1,6 @@
 import "./style.css";
 
 var n = 1;
-var apiKey = "";
 var elencoCoordinate = document.getElementById("coord");
 var bottoneSalva = document.getElementById("bottoneRegistra");
 var bottoneCarica = document.getElementById("bottoneCarica");
@@ -43,27 +42,23 @@ mappa.on("click", e => {
 });
 
 bottoneSalva.onclick = e => {
-  let apiKey = document.getElementById("key").value;
-  fetch("https://api.keyvalue.xyz/" + apiKey + "/myKey", {
+  n = featuresCollection.features.length + 1;
+  fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8"
-    },
     body: JSON.stringify(featuresCollection)
   });
 };
 
 bottoneCarica.onclick = e => {
-  featuresCollection = {};
-  let apiKey = document.getElementById("key").value;
-  fetch("https://api.keyvalue.xyz/" + apiKey + "/myKey")
-    .then(response => response.json())
-    .then(dati => {
-      featuresCollection = dati;
-      visualizzaCoordinate();
-      L.geoJSON(featuresCollection, {
-        onEachFeature: (f, l) => (l.options.title = f.title)
-      }).addTo(mappa);
-      n = featuresCollection.features.length + 1;
-    });
+  let url = document.getElementById("urlBox").value;
+  fetch(url)
+  .then( response => response.json())
+  .then( dati => {
+    featuresCollection = dati;
+    n = featuresCollection.features.length + 1;
+    L.geoJSON(featuresCollection, {
+      onEachFeature: (f, l) => (l.options.title = f.title)
+    }).addTo(mappa);
+    visualizzaCoordinate();
+  });
 };
