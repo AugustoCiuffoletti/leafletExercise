@@ -1,11 +1,8 @@
 import "./style.css";
 
 var n = 1;
-var apiKey = "f40aade2";
-var URL = 'https://api.keyvalue.xyz/' + apiKey + '/myKey'
 var elencoCoordinate = document.getElementById("coord");
 var bottoneSalva = document.getElementById("bottoneRegistra");
-
 var coordinate = [];
 var mappa = L.map("mapid", {
   center: L.latLng(43.72301, 10.39663),
@@ -33,10 +30,11 @@ mappa.on("click", e => {
 });
 
 bottoneSalva.onclick = e => {
-  fetch('https://api.keyvalue.xyz/f40aade2/myKey', {
-    method: 'POST',
+  let url = document.getElementById("urlBox").value;
+  fetch(url, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json;charset=utf-8'
+      "Content-Type": "application/json;charset=utf-8"
     },
     body: JSON.stringify(coordinate)
   });
