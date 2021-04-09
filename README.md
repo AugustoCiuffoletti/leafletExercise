@@ -1,4 +1,4 @@
-# Step 6: save in the cloud
+# Step 7: save in the cloud
 
 We need to identify a service fitting our needs. In essence, we need to store in the cloud an array of data, the coordinates of the markers.
 
