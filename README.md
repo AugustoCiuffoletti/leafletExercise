@@ -11,5 +11,3 @@ The *then* method takes as parameter a function, that receives as parameter the 
 The parameter of such function is an array of coordinates. For each of them we create a marker, while pushing the item in the local array. Note that the *title* property and the indexing are reconstructed from the array
 
 When the download is complete the array of the coordinates is displayed on screen.
-
-With this step we have complete a full set of functionalities: marker placement, coordinate recording, and persistent storage. However our tool does not integrate with other tools, since our format does not comply with a standard. The next step consist of encoding our data using the geoJson standard: proceed with the *geoJson* branch.
