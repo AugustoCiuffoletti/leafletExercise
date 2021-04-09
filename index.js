@@ -39,15 +39,15 @@ bottoneSalva.onclick = e => {
 };
 
 bottoneCarica.onclick = e => {
-  coordinate = [];
   let url = document.getElementById("urlBox").value;
   fetch(url)
   .then( response => response.json() )
   .then( dati => {
-    for ( let i in dati ) {
-      let c = L.latLng(dati[i]);
+    console.log(coordinate)
+    coordinate = dati;
+    for ( let i in coordinate ) {
+      let c = L.latLng(coordinate[i]);
       L.marker( c, { title: i }).addTo(mappa);
-      coordinate.push(c);
     }
     visualizzaCoordinate();
   } )
