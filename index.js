@@ -33,9 +33,6 @@ bottoneSalva.onclick = e => {
   let url = document.getElementById("urlBox").value;
   fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json;charset=utf-8"
-    },
     body: JSON.stringify(coordinate)
   });
 };

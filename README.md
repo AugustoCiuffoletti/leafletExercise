@@ -18,4 +18,10 @@ that you can use to upload/download your string value.
 
 To store the coordinates and the index of our markers we perform two steps: the array is first encoded as a JSON string, the string is uploaded with a POST to the personal URL. On the interface, we need a box containing the personale URL, and a button to trigger the store operation.
 
-The input box is 
+The input HTML element is located just below the title in the web page, while the "Save" button is below the map. In the program we associate a function to the *click* event on the button. The event takes the URL value from the input box and performs a POST request using the *fetch* library function. The function takes as parameters the destination URL, an a list of optional parameters. In our case we have the *method* name POST, and the *body* of the request payload. This latter consists of the coordinates array, encoded in JSON using the *stringify* function of the JSON class.
+
+To operate the service, fill the URL box with your personal URL, place some markers on the map and click the save button. To check the result of the operation, you can visit your personal URL with *curl*, or with your browser.
+
+If you have some JavaScript proficiency you can improve the store operation checking if the input box is non empty, and if the fetch operation performs successfully. Otherwise you can locate the elements in the html file and play with their location and style.
+
+Now we need a way to retrieve the data from our cloud storage, the topic of the next step. Select the *Load" branch. 
