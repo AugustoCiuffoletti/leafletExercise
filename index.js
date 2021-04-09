@@ -20,9 +20,18 @@ function visualizzaCoordinate() {
       "<br>";
   }
 }
+
 mappa.on("click", e => {
   L.marker(e.latlng, { title: n }).addTo(mappa);
   coordinate.push(e.latlng);
   visualizzaCoordinate();
   n++;
 });
+
+newButton.onclick = e => {
+  fetch("https://api.keyvalue.xyz/new/myKey", {
+    method: "POST"
+  })
+  .then( response => response.text() )
+  .then( body => document.getElementById("urlBox").value = body );
+}
