@@ -27,6 +27,7 @@ function visualizzaCoordinate() {
       "<br>";
   }
 }
+
 mappa.on("click", e => {
   let x = L.marker(e.latlng, { title: n }).addTo(mappa);
   let feature = {};
@@ -42,6 +43,7 @@ mappa.on("click", e => {
 });
 
 bottoneSalva.onclick = e => {
+  let url = document.getElementById("urlBox").value;
   n = featuresCollection.features.length + 1;
   fetch(url, {
     method: "POST",

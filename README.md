@@ -29,5 +29,13 @@ Note that the coordinates are in reverse order with respect to our representatio
   ]
 }
 
-The structure and functionalities of the program are not affected by the change in data representation, but there are many change in details.
+The structure and functionalities of the program are not affected by the change in data representation, but there are many different details.
+
+The array inizialization on top of the program is replaced with the initialization of an object with *type* *FeatureCollection*. 
+
+The function associated to a click on the map creates a new *Feature* object which is then pushed into the *features* array in the *FeaturesCollection*.
+
+The visualization function descends into each a *Feature* object to find the coordinates.
+
+The function associated with the save button is similar to the previous one, while the one associated with the load button exhibits significant changes. The loop for the creation of the markers is now replaced with a single call to the *addTo* method that, alone, does the job. The function associated with the *onEachFeature* attribute initializes the *title* attribute of each marker with the *title* attribute of the corrsponding feature. This preserves the index numbers shown hovering on the markers.  
 
