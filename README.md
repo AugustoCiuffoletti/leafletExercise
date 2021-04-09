@@ -1,6 +1,6 @@
 # Step 9: adoption of GeoJSON
 
-It is always difficult to modify the data representation of a project, since the change will pervade the whole project. For this reason the designer should carefully select one, adhering to standards when they exist. In our case we want to change the data representation from a plain array to a GeoJSON object.
+It is always difficult to modify the data representation of a project, since the change will pervade the whole of it. For this reason the designer should carefully select one, adhering to standards when they exist. In our case we want to change the data representation from a plain array to a GeoJSON object.
 
 The GeoJSON object that corresponds to a single marker on our map is the *Feature*, which is represented as follows:
 
