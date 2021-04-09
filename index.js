@@ -33,5 +33,7 @@ newButton.onclick = e => {
     method: "POST"
   })
   .then( response => response.text() )
-  .then( body => document.getElementById("urlBox").value = body );
+  .then( body => {
+    document.getElementById("urlBox").value = body;
+    document.getElementById("newButton").style.display = "none";} );
 }
