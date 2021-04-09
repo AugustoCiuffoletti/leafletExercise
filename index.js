@@ -42,6 +42,16 @@ mappa.on("click", e => {
   n++;
 });
 
+newButton.onclick = e => {
+  fetch("https://api.keyvalue.xyz/new/dhss2021", {
+    method: "POST"
+  })
+  .then( response => response.text() )
+  .then( body => {
+    document.getElementById("urlBox").value = body;
+    document.getElementById("newButton").style.display = "none";} );
+}
+
 bottoneSalva.onclick = e => {
   let url = document.getElementById("urlBox").value;
   n = featuresCollection.features.length + 1;
