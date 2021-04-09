@@ -43,7 +43,6 @@ bottoneCarica.onclick = e => {
   fetch(url)
   .then( response => response.json() )
   .then( dati => {
-    console.log(coordinate)
     coordinate = dati;
     for ( let i in coordinate ) {
       let c = L.latLng(coordinate[i]);
