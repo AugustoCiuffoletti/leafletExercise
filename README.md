@@ -39,3 +39,4 @@ The visualization function descends into each a *Feature* object to find the coo
 
 The function associated with the save button is similar to the previous one, while the one associated with the load button exhibits significant changes. The loop for the creation of the markers is now replaced with a single call to the *addTo* method that, alone, does the job. The function associated with the *onEachFeature* attribute initializes the *title* attribute of each marker with the *title* attribute of the corrsponding feature. This preserves the index numbers shown hovering on the markers.  
 
+We are now able to import our data into QGis. For this open QGis and load a raster. Next open the *Later* module and select *Source Data Manager*. In the dialog select the *Protocol* radio button and the GeoJSON protocol, and finally paste your personal URL in the URI text box. Clicking on the *add* button the points in your list are loaded on the QGis Map.
