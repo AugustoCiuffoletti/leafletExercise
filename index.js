@@ -15,9 +15,9 @@ function displayAllCoords() {
     displayCoord.innerHTML +=
       (Number(i)+1) +
       ": " +
-      markers[i].getLatLng().toFixed(5) +
+      markers[i].getLatLng().lat.toFixed(5) +
       ", " +
-      markers[i].getLatLng().toFixed(5) +
+      markers[i].getLatLng().lng.toFixed(5) +
       "<br>";
   }
 }
