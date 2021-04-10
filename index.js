@@ -48,17 +48,15 @@ saveButton.onclick = e => {
   });
 };
 
-
-bottoneCarica.onclick = e => {
+loadButton.onclick = e => {
   let url = document.getElementById("urlBox").value;
   fetch(url)
   .then( response => response.json() )
-  .then( dati => {
-    coordinate = dati;
-    n = coordinate.length + 1;
-    for ( let i in coordinate ) {
-      let c = L.latLng(coordinate[i]);
-      L.marker( c, { title: i }).addTo(mappa);
+  .then( payload => {
+    let coordinates = payload;
+    n = coordinates.length + 1;
+    for ( let i in coordinates ) {
+      L.marker( coordinates[i], { title: i }).addTo(aMap);
     }
     visualizzaCoordinate();
   } )
