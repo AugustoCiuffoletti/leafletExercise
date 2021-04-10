@@ -13,7 +13,8 @@ function displayAllCoords() {
   displayCoord.innerHTML = "";
   for (let i in markers) {
     displayCoord.innerHTML +=
-      (Number(i)+1) +
+      Number(i) +
+      1 +
       ": " +
       markers[i].getLatLng().lat.toFixed(5) +
       ", " +
@@ -33,17 +34,18 @@ newButton.onclick = e => {
   fetch("https://api.keyvalue.xyz/new/dhss2021", {
     method: "POST"
   })
-  .then( response => response.text() )
-  .then( body => {
-    document.getElementById("urlBox").value = body;
-    document.getElementById("newButton").style.display = "none";} );
-}
+    .then(response => response.text())
+    .then(body => {
+      document.getElementById("urlBox").value = body;
+      document.getElementById("newButton").style.display = "none";
+    });
+};
 
 saveButton.onclick = e => {
   let featuresCollection = {};
   featuresCollection.type = "FeatureCollection";
   featuresCollection.features = [];
-  for ( let i in markers) {
+  for (let i in markers) {
     let feature = {};
     feature.type = "Feature";
     feature.title = i;
@@ -61,24 +63,24 @@ saveButton.onclick = e => {
 };
 
 loadButton.onclick = e => {
-  for ( let i in markers ) {
+  for (let i in markers) {
     aMap.removeLayer(markers[i]);
   }
-  markers=[];
+  markers = [];
   let url = document.getElementById("urlBox").value;
-  // QUI NON FUNZIONA
   fetch(url)
-  .then( response => response.json())
-  .then( payload => {
-    console.log(payload);
-    features = payload.features;
-    console.log(features);
-    n = features.length + 1;
-    for ( let i in features ) {
-      let coord = L.latLng(features[i].lat,features[i].lng);
-      let aMarker = L.marker( coord, { title: i }).addTo(aMap);
-      markers.push(aMarker)
-    }
-    visualizzaCoordinate();
-  });
+    .then(response => response.json())
+    .then(payload => {
+      let features = payload.features;
+      n = features.length + 1;
+      for (let i in features) {
+        let coord = L.latLng(
+          features[i].geometry.coordinates[1],
+          features[i].geometry.coordinates[0]
+        );
+        let aMarker = L.marker(coord, { title: i }).addTo(aMap);
+        markers.push(aMarker);
+      }
+      displayAllCoords();
+    });
 };
