@@ -15,15 +15,15 @@ function displayAllCoords() {
     displayCoord.innerHTML +=
       (Number(i)+1) +
       ": " +
-      markers[i].getLngLat().toFixed(5) +
+      markers[i].getLatLng().toFixed(5) +
       ", " +
-      markers[i].getLngLat().toFixed(5) +
+      markers[i].getLatLng().toFixed(5) +
       "<br>";
   }
 }
 
 aMap.on("click", e => {
-  let aMarker = L.marker(e.latlng, { title: n }).aMarker.addTo(aMap);
+  let aMarker = L.marker(e.latlng, { title: n }).addTo(aMap);
   markers.push(aMarker);
   displayAllCoords();
   n++;
