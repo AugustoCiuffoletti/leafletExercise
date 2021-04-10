@@ -7,6 +7,7 @@ var aMap = L.map("mapid", {
   zoom: 15,
   layers: [L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")]
 });
+
 aMap.on("click", e => {
   let displayCoord = document.getElementById("displayCoord");
   let aMarker = L.marker(e.latlng, { title: n }).addTo(aMap);
