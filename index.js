@@ -1,3 +1,6 @@
+import "./style.css";
+
+var n = 1;
 var markers = [];
 var aMap = L.map("mapid", {
   center: L.latLng(43.72301, 10.39663),
