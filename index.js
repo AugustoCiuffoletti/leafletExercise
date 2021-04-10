@@ -49,6 +49,11 @@ saveButton.onclick = e => {
 };
 
 loadButton.onclick = e => {
+  for ( let i in markers ) {
+    aMap.removeLayer(markers[i]);
+  }
+  markers=[];
+  n=0;
   let url = document.getElementById("urlBox").value;
   fetch(url)
   .then( response => response.json() )
@@ -56,8 +61,9 @@ loadButton.onclick = e => {
     let coordinates = payload;
     n = coordinates.length + 1;
     for ( let i in coordinates ) {
-      L.marker( coordinates[i], { title: i }).addTo(aMap);
+      let aMarker = L.marker( coordinates[i], { title: i }).addTo(aMap);
+      markers.push(aMarker)
     }
-    visualizzaCoordinate();
+    displayAllCoords();
   } )
 };
