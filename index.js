@@ -1,6 +1,5 @@
 import "./style.css";
 
-var n = 1;
 var markers = [];
 var aMap = L.map("mapid", {
   center: L.latLng(43.72301, 10.39663),
@@ -23,10 +22,9 @@ function displayAllCoords() {
 }
 
 aMap.on("click", e => {
-  let aMarker = L.marker(e.latlng, { title: n }).addTo(aMap);
+  let aMarker = L.marker(e.latlng).addTo(aMap);
   markers.push(aMarker);
   displayAllCoords();
-  n++;
 });
 
 newButton.onclick = e => {
