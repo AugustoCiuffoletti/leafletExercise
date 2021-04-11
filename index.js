@@ -10,16 +10,15 @@ var aMap = L.map("mapid", {
 function displayAllCoords() {
   let displayCoord = document.getElementById("displayCoord");
   displayCoord.innerHTML = "";
-  for (let i in markers) {
+  markers.forEach( (marker,i) => {
     displayCoord.innerHTML +=
-      Number(i) +
-      1 +
+      (Number(i)+1) +
       ": " +
-      markers[i].getLatLng().lat.toFixed(5) +
+      marker.getLatLng().lat.toFixed(5) +
       ", " +
-      markers[i].getLatLng().lng.toFixed(5) +
+      marker.getLatLng().lng.toFixed(5) +
       "<br>";
-  }
+  } )
 }
 
 aMap.on("click", e => {
