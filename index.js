@@ -1,6 +1,5 @@
 import "./style.css";
 
-var n = 1;
 var markers = [];
 var aMap = L.map("mapid", {
   center: L.latLng(43.72301, 10.39663),
@@ -24,10 +23,9 @@ function displayAllCoords() {
 }
 
 aMap.on("click", e => {
-  let aMarker = L.marker(e.latlng, { title: n }).addTo(aMap);
+  let aMarker = L.marker(e.latlng).addTo(aMap);
   markers.push(aMarker);
   displayAllCoords();
-  n++;
 });
 
 newButton.onclick = e => {
@@ -48,7 +46,6 @@ saveButton.onclick = e => {
   for (let i in markers) {
     let feature = {};
     feature.type = "Feature";
-    feature.title = i;
     feature.geometry = {
       type: "Point",
       coordinates: [markers[i].getLatLng().lng, markers[i].getLatLng().lat]
@@ -72,13 +69,12 @@ loadButton.onclick = e => {
     .then(response => response.json())
     .then(payload => {
       let features = payload.features;
-      n = features.length + 1;
       for (let i in features) {
         let coord = L.latLng(
           features[i].geometry.coordinates[1],
           features[i].geometry.coordinates[0]
         );
-        let aMarker = L.marker(coord, { title: i }).addTo(aMap);
+        let aMarker = L.marker(coord).addTo(aMap);
         markers.push(aMarker);
       }
       displayAllCoords();
