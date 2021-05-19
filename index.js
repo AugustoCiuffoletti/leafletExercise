@@ -17,7 +17,7 @@ var aMap = L.map('mapid', {
 var aMarker = L.marker(L.latLng(pointLat, pointLng));
 // Attach a popup
 aMarker.bindPopup(
-  '<b>Rounding!</b><br>This point has coordinates rounded to 2 digits.<br>Notice the distance from the center map!.'
+  '<b>Rounding!</b><br>This point has coordinates rounded to 2 digits.<br>Notice the distance from the Tower!'
 );
 // Draw the point feature to the map
 aMarker.addTo(aMap);
