@@ -5,7 +5,7 @@ var centerLat = 43.72301;
 var centerLng = 10.39663;
 // Coordinates for the point feature
 var pointLat = centerLat.toFixed(2);
-var pointLong = centerLng.toFixed(2);
+var pointLng = centerLng.toFixed(2);
 
 // Define a map
 var aMap = L.map('mapid', {
