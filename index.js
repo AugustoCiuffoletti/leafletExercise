@@ -2,19 +2,19 @@ import './style.css';
 
 // Coordinates for the tower of Pisa
 var centerLat = 43.72301;
-var centerLong = 10.39663;
+var centerLng = 10.39663;
 // Coordinates for the point feature
-var pointLat = Math.round(centerLat * 100) / 100;
-var pointLong = Math.round(centerLong * 100) / 100;
+var pointLat = centerLat.toFixed(2);
+var pointLong = centerLng.toFixed(2);
 
 // Define a map
 var aMap = L.map('mapid', {
-  center: L.latLng(centerLat, centerLong),
+  center: L.latLng(centerLat, centerLng),
   zoom: 15,
   layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')]
 });
 // Define (using a constructor) a point feature
-var aMarker = L.marker(L.latLng(pointLat, pointLong));
+var aMarker = L.marker(L.latLng(pointLat, pointLng));
 // Attach a popup
 aMarker.bindPopup(
   '<b>Rounding!</b><br>This point has coordinates rounded to 2 digits.<br>Notice the distance from the center map!.'
