@@ -1,6 +1,6 @@
 import "./style.css";
 
-// Coordinates for the map center
+// Coordinates for the tower of Pisa
 var centerLat = 43.7229;
 var centerLong = 10.3966;
 // Coordinates for the point feature
