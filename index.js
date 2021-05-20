@@ -29,5 +29,5 @@ aMap.on("click", e => {
     ', ' +
     aMarker.getLatLng().lng.toFixed(5) +
     '<br>';
-  console.log(markers)
+  console.log(JSON.stringify(markers))
 });
