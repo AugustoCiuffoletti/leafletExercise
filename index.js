@@ -96,6 +96,5 @@ loadButton.onclick = e => {
         markers.addLayer(aMarker);
       }
       // displayAllCoords();
-      console.log('Done');
     });
 };
