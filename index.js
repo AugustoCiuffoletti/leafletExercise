@@ -28,7 +28,10 @@ function displayAllCoords() {
 }
 
 aMap.on("click", e => {
-  let aMarker = L.marker(e.latlng, { title: n }).addTo(aMap);
+  let aMarker = L.marker(
+    e.latlng, 
+    { title: markers.length + 1 }
+  ).addTo(aMap);
   markers.push(aMarker);
   displayAllCoords();
 });
