@@ -18,7 +18,7 @@ function displayAllCoords() {
   displayCoord.innerHTML = "";
   markers.forEach( (marker,i) => {
     displayCoord.innerHTML +=
-      (Number(i)+1) +
+      (i+1) +
       ": " +
       marker.getLatLng().lat.toFixed(5) +
       ", " +
