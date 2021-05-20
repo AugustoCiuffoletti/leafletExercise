@@ -10,7 +10,7 @@ var aMap = L.map('mapid', {
   layers: [L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")]
 });
 // An array of markers
-var markers = L.geoJSON();
+var markers = L.layerGroup();
 // Add controls for the layer
 L.control.layers(
   {},                  // base layers, radio buttons
@@ -29,5 +29,5 @@ aMap.on("click", e => {
     ', ' +
     aMarker.getLatLng().lng.toFixed(5) +
     '<br>';
-  console.log(JSON.stringify(markers))
+  console.log(JSON.stringify(markers.toGeoJSON()))
 });
