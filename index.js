@@ -13,8 +13,8 @@ var aMap = L.map('mapid', {
 var markers = L.layerGroup();
 // Add controls for the layer
 L.control.layers(
-  {},                  // baselayers
-  {"Markers": markers} // overlay layers
+  {},                  // base layers, radio buttons
+  {"Markers": markers} // overlay layers, checkbox
 ).addTo(aMap);
 
 aMap.on("click", e => {
