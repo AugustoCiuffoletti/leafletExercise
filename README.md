@@ -1,3 +1,3 @@
-# Step 6: create a storage for your data
+# Step 8: create a storage for your data
 
 Go to *Save*
