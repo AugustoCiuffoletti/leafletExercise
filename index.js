@@ -12,26 +12,18 @@ var aMap = L.map('mapid', {
 // An array of markers
 var markers = [];
 
-
-function displayAllCoords() {
-  let displayCoord = document.getElementById("displayCoord");
-  displayCoord.innerHTML = "";
-  markers.forEach( (marker,i) => {
-    displayCoord.innerHTML +=
-      (i+1) +
-      ": " +
-      marker.getLatLng().lat.toFixed(5) +
-      ", " +
-      marker.getLatLng().lng.toFixed(5) +
-      "<br>";
-  } )
-}
-
 aMap.on("click", e => {
+  let n = markers.length + 1;
   let aMarker = L.marker(
     e.latlng, 
-    { title: markers.length + 1 }
+    { title: n }
   ).addTo(aMap);
   markers.push(aMarker);
-  displayAllCoords();
+  displayCoord.innerHTML +=
+    n +
+    ': ' +
+    aMarker.getLatLng().lat.toFixed(5) +
+    ', ' +
+    aMarker.getLatLng().lng.toFixed(5) +
+    '<br>';
 });
