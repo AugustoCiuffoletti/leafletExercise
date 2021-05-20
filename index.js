@@ -87,12 +87,12 @@ loadButton.onclick = e => {
     .then(response => response.json())
     .then(payload => {
       let layer = JSON.parse(payload);
-      for (let feature of layer.features) {
+      for (let i in layer.features) {
         let coord = L.latLng([
-          feature.geometry.coordinates[1],
-          feature.geometry.coordinates[0]
+          layer.features[i].geometry.coordinates[1],
+          layer.features[i].geometry.coordinates[0]
         ]);
-        let aMarker = L.marker(coord);
+        let aMarker = L.marker(coord, { title: Number(i)+1 });
         markers.addLayer(aMarker);
       }
       // displayAllCoords();
