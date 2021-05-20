@@ -69,6 +69,7 @@ loadButton.onclick = e => {
   let url = document.getElementById('urlBox').value;
   let displayCoord = document.getElementById('displayCoord');
   markers.clearLayers();
+  displayCoord.innerHTML = "";
   fetch(url)
     .then(response => response.json())
     .then(payload => {
