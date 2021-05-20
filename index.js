@@ -57,21 +57,6 @@ newButton.onclick = e => {
     });
 };
 
-function displayAllCoords() {
-  let displayCoord = document.getElementById('displayCoord');
-  displayCoord.innerHTML = '';
-  markers.forEach((marker, i) => {
-    displayCoord.innerHTML +=
-      Number(i) +
-      1 +
-      ': ' +
-      marker.getLatLng().lat.toFixed(5) +
-      ', ' +
-      marker.getLatLng().lng.toFixed(5) +
-      '<br>';
-  });
-}
-
 saveButton.onclick = e => {
   let url = document.getElementById('urlBox').value;
   fetch(url, {
@@ -81,8 +66,9 @@ saveButton.onclick = e => {
 };
 
 loadButton.onclick = e => {
-  markers.clearLayers();
   let url = document.getElementById('urlBox').value;
+  let displayCoord = document.getElementById('displayCoord');
+  markers.clearLayers();
   fetch(url)
     .then(response => response.json())
     .then(payload => {
@@ -92,8 +78,15 @@ loadButton.onclick = e => {
           layer.features[i].geometry.coordinates[1],
           layer.features[i].geometry.coordinates[0]
         ]);
-        let aMarker = L.marker(coord, { title: Number(i)+1 });
+        let aMarker = L.marker(coord, { title: Number(i) + 1 });
         markers.addLayer(aMarker);
+        displayCoord.innerHTML +=
+          ( Number(i) + 1 ) +
+          ': ' +
+          coord.lat.toFixed(5) +
+          ', ' +
+          coord.lng.toFixed(5) +
+          '<br>';
       }
       // displayAllCoords();
     });
