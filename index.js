@@ -14,7 +14,7 @@ var markers = L.layerGroup();
 // Add controls for the layer
 L.control.layers(
   {},                  // base layers, radio buttons
-  {"Markers": markers} // overlay layers, checkbox
+  {"Markers": markers} // overlay layers, checkbox buttons
 ).addTo(aMap);
 
 aMap.on("click", e => {
