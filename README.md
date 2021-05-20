@@ -1,4 +1,4 @@
-# Step 5: store the coordinates in a data structure
+# Step 7: store the coordinates in a data structure
 
 At this point the coordinates avaliable to the user, that can cut/paste them from the User Interface, but they are not available for processing in the application. In this step we see how to store the coordinates in an Array.
 
