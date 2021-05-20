@@ -88,7 +88,6 @@ loadButton.onclick = e => {
     .then(payload => {
       let layer = JSON.parse(payload);
       for (let feature of layer.features) {
-        console.log(L.latLng(feature.geometry.coordinates));
         let coord = L.latLng([
           feature.geometry.coordinates[1],
           feature.geometry.coordinates[0]
