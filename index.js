@@ -39,6 +39,9 @@ newButton.onclick = e => {
   .then( body => {
     document.getElementById("urlBox").value = body;
     document.getElementById("newButton").style.display = "none";
-    
-    } );
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(markers.toGeoJSON())
+    });
+  });
 }
