@@ -14,6 +14,7 @@ var markers = [];
 
 aMap.on("click", e => {
   let n = markers.length + 1;
+  let displayCoord = document.getElementById('displayCoord');
   let aMarker = L.marker(e.latlng, { title: n }).addTo(aMap);
   markers.push(aMarker);
   displayCoord.innerHTML +=
