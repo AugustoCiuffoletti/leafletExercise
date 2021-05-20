@@ -11,6 +11,7 @@ var aMap = L.map('mapid', {
 });
 // An array of markers
 var markers = L.layerGroup();
+markers.addTo(aMap);
 // Add controls for the layer
 L.control.layers(
   {},                  // base layers, radio buttons
