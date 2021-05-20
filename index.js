@@ -81,19 +81,22 @@ saveButton.onclick = e => {
 };
 
 loadButton.onclick = e => {
-  for (let i in markers) {
-    aMap.removeLayer(markers[i]);
-  }
-  markers = [];
+  markers.clearLayers();
   let url = document.getElementById('urlBox').value;
   fetch(url)
     .then(response => response.json())
     .then(payload => {
-      let coordinates = payload;
-      for (let i in coordinates) {
-        let aMarker = L.marker(coordinates[i]).addTo(aMap);
-        markers.push(aMarker);
+      let layer = JSON.parse(payload);
+      for (let feature of layer.features) {
+        console.log(L.latLng(feature.geometry.coordinates));
+        let coord = L.latLng([
+          feature.geometry.coordinates[1],
+          feature.geometry.coordinates[0]
+        ]);
+        let aMarker = L.marker(coord);
+        markers.addLayer(aMarker);
       }
-      displayAllCoords();
+      // displayAllCoords();
+      console.log('Done');
     });
 };
