@@ -10,13 +10,18 @@ var aMap = L.map('mapid', {
   layers: [L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")]
 });
 // An array of markers
-var markers = [];
+var markers = L.layerGroup();
+// Add controls for the layer
+L.control.layers(
+  {},                  // baselayers
+  {"Markers": markers} // overlay layers
+).addTo(aMap);
 
 aMap.on("click", e => {
-  let n = markers.length + 1;
+  let n = markers.getLayers().length + 1;
   let displayCoord = document.getElementById('displayCoord');
   let aMarker = L.marker(e.latlng, { title: n }).addTo(aMap);
-  markers.push(aMarker);
+  markers.addLayer(aMarker);
   displayCoord.innerHTML +=
     n +
     ': ' +
