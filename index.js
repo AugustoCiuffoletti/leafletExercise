@@ -61,7 +61,7 @@ saveButton.onclick = e => {
   let url = document.getElementById('urlBox').value;
   fetch(url, {
     method: 'POST',
-    body: JSON.stringify(JSON.stringify(markers.toGeoJSON()))
+    body: JSON.stringify(markers.toGeoJSON())
   });
 };
 
