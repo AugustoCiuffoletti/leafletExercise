@@ -10,8 +10,10 @@ var aMap = L.map('mapid', {
   layers: [L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')]
 });
 
-// Attach a callback to a click event on the map. The callback displays 
+// Attach a callback to a click event on the map. The callback displays
 // an alert with the latitude and the longitude found in the event descriptor
 aMap.on('click', e =>
-  alert('Hai puntato ' + e.latlng.lat.toFixed(2) + ',' + e.latlng.lng.toFixed(2))
+  alert(
+    'Hai puntato ' + e.latlng.lat.toFixed(5) + ',' + e.latlng.lng.toFixed(5)
+  )
 );
