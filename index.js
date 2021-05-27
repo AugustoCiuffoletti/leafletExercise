@@ -32,5 +32,5 @@ aMap.on('click', e => {
     ', ' +
     aMarker.getLatLng().lng.toFixed(5) +
     '<br>';
-  console.log('%c JSON.stringify(markers.toGeoJSON())', 'color:white)'); //patched for Stackblitz color bug
+  console.log('%c ' + JSON.stringify(markers.toGeoJSON()), 'color:white)'); //patched for Stackblitz color bug
 });
