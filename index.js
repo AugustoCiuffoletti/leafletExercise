@@ -58,11 +58,12 @@ newButton.onclick = e => {
 
 saveButton.onclick = e => {
   let key = document.getElementById('keyBox').value;
-  console.log(key);
   fetch(baseURL + '/setValue' + '?key=' + key, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(markers.toGeoJSON())
-  });
-  console.log(JSON.stringify(markers.toGeoJSON()));
+  }).then(
+    () => alert("Save successful"),
+    err => alert("Save failed: "+err)
+  );
 };
