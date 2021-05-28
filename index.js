@@ -3,6 +3,8 @@ import './style.css';
 // Coordinates for the tower of Pisa
 var centerLat = 43.72301;
 var centerLong = 10.39663;
+var baseURL = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/dhss21-mczua/service/svc/incoming_webhook"
+
 // Display the map
 var aMap = L.map('mapid', {
   center: L.latLng(centerLat, centerLong),
@@ -35,42 +37,42 @@ aMap.on('click', e => {
 });
 
 newButton.onclick = e => {
-  fetch('https://api.keyvalue.xyz/new/dhss2021', {
-    method: 'POST'
-  })
-    .then(response => response.text())
-    .then(body => {
-      let url = body;
-      document.getElementById('urlBox').value = url;
-      console.log();
-      fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(JSON.stringify(markers.toGeoJSON()))
-      }).then(
-        body => {
-          document.getElementById('newButton').style.display = 'none';
-          document.getElementById('saveButton').style.display = 'true';
-          document.getElementById('loadButton').style.display = 'true';
-        },
-        err => console.log(err)
-      );
-    });
-};
-
-saveButton.onclick = e => {
-  let url = document.getElementById('urlBox').value;
-  fetch(url, {
-    method: 'POST',
-    body: JSON.stringify(markers.toGeoJSON())
+  fetch(baseURL+'/getKey', { method: 'POST' })
+  .then(response => response.text())
+  .then(body => {
+    let key = JSON.parse(body);
+    fetch(baseURL+'/setValue'+'?key='+key, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(markers.toGeoJSON())
+    }).then(
+      () => {
+        console.log("Success");
+        document.getElementById('keyBox').value = key;
+        document.getElementById('newButton').style.display = 'none'
+      },
+      err => console.log(err)
+    );
   });
 };
 
+saveButton.onclick = e => {
+  let key = document.getElementById('keyBox').value;
+  console.log(key);
+  fetch(baseURL + '/setValue' + '?key=' + key, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(markers.toGeoJSON())
+  });
+  console.log(JSON.stringify(markers.toGeoJSON()));
+};
+
 loadButton.onclick = e => {
-  let url = document.getElementById('urlBox').value;
+  let key = document.getElementById('keyBox').value;
   let displayCoord = document.getElementById('displayCoord');
-  markers.clearLayers();
   displayCoord.innerHTML = "";
-  fetch(url)
+  markers.clearLayers();
+  fetch(baseURL + '/getValue' + '?key=' + key)
     .then(response => response.json())
     .then(payload => {
       let layer = JSON.parse(payload);
