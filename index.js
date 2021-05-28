@@ -63,10 +63,7 @@ saveButton.onclick = e => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(markers.toGeoJSON())
-  }).then(
-    () => alert("Save successful"),
-    err => alert("Save failed: "+err)
-  );
+  }).then(() => alert('Save successful'), err => alert('Save failed: ' + err));
 };
 
 loadButton.onclick = e => {
@@ -77,22 +74,26 @@ loadButton.onclick = e => {
   fetch(baseURL + '/getValue' + '?key=' + key)
     .then(response => response.json())
     .then(payload => {
-      let layer = JSON.parse(payload);
+      let layer = payload;
       for (let i in layer.features) {
-        let coord = L.latLng([
-          layer.features[i].geometry.coordinates[1],
-          layer.features[i].geometry.coordinates[0]
-        ]);
-        let aMarker = L.marker(coord, { title: Number(i) + 1 });
-        markers.addLayer(aMarker);
-        displayCoord.innerHTML +=
-          Number(i) +
-          1 +
-          ': ' +
-          coord.lat.toFixed(5) +
-          ', ' +
-          coord.lng.toFixed(5) +
-          '<br>';
+        try {
+          let coord = L.latLng([
+            layer.features[i].geometry.coordinates[1].$numberDouble,
+            layer.features[i].geometry.coordinates[0].$numberDouble
+          ]);
+          let aMarker = L.marker(coord, { title: Number(i) + 1 });
+          markers.addLayer(aMarker);
+          displayCoord.innerHTML +=
+            Number(i) +
+            1 +
+            ': ' +
+            coord.lat.toFixed(5) +
+            ', ' +
+            coord.lng.toFixed(5) +
+            '<br>';
+        } catch (e) {
+          console.log('errore ' + e);
+        }
       }
     });
 };
