@@ -1,6 +1,5 @@
 import "./style.css";
 
-
 var baseURL = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/dhss21-mczua/service/svc/incoming_webhook";
 var markers = [];
 var aMap = L.map("mapid", {
