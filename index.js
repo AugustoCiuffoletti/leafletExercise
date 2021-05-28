@@ -33,6 +33,7 @@ newButton.onclick = e => {
   fetch(baseURL+'/getKey', { method: 'POST' })
   .then(response => response.text())
   .then(body => {
+    let key = JSON.parse(body);
     console.log(key);
     fetch(baseURL+'/setValue'+'?key='+key, {
       method: 'POST',
