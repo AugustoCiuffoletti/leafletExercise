@@ -41,7 +41,6 @@ newButton.onclick = e => {
   .then(response => response.text())
   .then(body => {
     let key = JSON.parse(body);
-    document.getElementById('keyBox').value = key;
     fetch(baseURL+'/setValue'+'?key='+key, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -49,7 +48,8 @@ newButton.onclick = e => {
     }).then(
       () => {
         console.log("Success");
-        (document.getElementById('newButton').style.display = 'none')
+        document.getElementById('keyBox').value = key;
+        document.getElementById('newButton').style.display = 'none'
       },
       err => console.log(err)
     );
