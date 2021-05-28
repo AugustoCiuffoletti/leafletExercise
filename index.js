@@ -1,5 +1,7 @@
 import "./style.css";
 
+
+var baseURL = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/dhss21-mczua/service/svc/incoming_webhook";
 var markers = [];
 var aMap = L.map("mapid", {
   center: L.latLng(43.72301, 10.39663),
@@ -32,7 +34,8 @@ newButton.onclick = e => {
   .then(response => response.text())
   .then(body => {
     let key = JSON.parse(body);
-    fetch(baseURL+'/setValue'+'?key='+key, {
+    fetch(baseURL+'/setValue'+'?key='+key, 
+    {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(markers.toGeoJSON())
@@ -48,10 +51,12 @@ newButton.onclick = e => {
 };
 
 saveButton.onclick = e => {
-  let url = document.getElementById("urlBox").value;
-  let coordinates = markers.map( m => m.getLatLng() );
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(coordinates)
-  });
+  let key = document.getElementById("keyBox").value;
+  fetch(baseURL+'/setValue'+'?key='+key, 
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(markers.toGeoJSON())
+    }
+  );
 };
