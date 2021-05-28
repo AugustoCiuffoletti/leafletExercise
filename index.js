@@ -30,11 +30,10 @@ aMap.on('click', e => {
 });
 
 newButton.onclick = e => {
-  console.log("Ecco");
   fetch(baseURL+'/getKey', { method: 'POST' })
   .then(response => response.text())
   .then(body => {
-    let key = JSON.parse(body);
+    console.log(key);
     fetch(baseURL+'/setValue'+'?key='+key, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
