@@ -3,6 +3,8 @@ import './style.css';
 // Coordinates for the tower of Pisa
 var centerLat = 43.72301;
 var centerLong = 10.39663;
+var baseURL = "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/dhss21-mczua/service/svc/incoming_webhook"
+
 // Display the map
 var aMap = L.map('mapid', {
   center: L.latLng(centerLat, centerLong),
@@ -35,7 +37,7 @@ aMap.on('click', e => {
 });
 
 newButton.onclick = e => {
-  fetch('https://api.keyvalue.xyz/new/dhss2021', {
+  fetch(baseURL+'/getKey', {
     method: 'POST'
   })
     .then(response => response.text())
