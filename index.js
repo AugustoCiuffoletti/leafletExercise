@@ -37,20 +37,20 @@ aMap.on('click', e => {
 });
 
 newButton.onclick = e => {
-  fetch(baseURL+'/getKey', {
-    method: 'POST'
-  })
-    .then(response => response.text())
-    .then(body => {
-      let key = JSON.parse(body);
-      document.getElementById('keyBox').value = key;
-      console.log();
-      fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(JSON.stringify(markers.toGeoJSON()))
-      }).then(
-        body => (document.getElementById('newButton').style.display = 'none'),
-        err => console.log(err)
-      );
-    });
+  fetch(baseURL+'/getKey', { method: 'POST' })
+  .then(response => response.text())
+  .then(body => {
+    let key = JSON.parse(body);
+    document.getElementById('keyBox').value = key;
+    fetch(baseURL+'/setValue'+'?key='+key, {
+      method: 'POST',
+      body: JSON.stringify(markers.toGeoJSON())
+    }).then(
+      () => {
+        console.log("Success");
+        (document.getElementById('newButton').style.display = 'none')
+      },
+      err => console.log(err)
+    );
+  });
 };
