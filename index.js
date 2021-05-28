@@ -28,14 +28,24 @@ aMap.on("click", e => {
 });
 
 newButton.onclick = e => {
-  fetch("https://api.keyvalue.xyz/new/myKey", {
-    method: "POST"
-  })
-  .then( response => response.text() )
-  .then( body => {
-    document.getElementById("urlBox").value = body;
-    document.getElementById("newButton").style.display = "none";} );
-}
+  fetch(baseURL+'/getKey', { method: 'POST' })
+  .then(response => response.text())
+  .then(body => {
+    let key = JSON.parse(body);
+    fetch(baseURL+'/setValue'+'?key='+key, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(markers.toGeoJSON())
+    }).then(
+      () => {
+        console.log("Success");
+        document.getElementById('keyBox').value = key;
+        document.getElementById('newButton').style.display = 'none'
+      },
+      err => console.log(err)
+    );
+  });
+};
 
 saveButton.onclick = e => {
   let url = document.getElementById("urlBox").value;
