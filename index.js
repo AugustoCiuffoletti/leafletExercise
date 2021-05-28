@@ -44,6 +44,7 @@ newButton.onclick = e => {
     document.getElementById('keyBox').value = key;
     fetch(baseURL+'/setValue'+'?key='+key, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(markers.toGeoJSON())
     }).then(
       () => {
