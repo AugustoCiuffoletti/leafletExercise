@@ -42,8 +42,8 @@ newButton.onclick = e => {
   })
     .then(response => response.text())
     .then(body => {
-      let url = body;
-      document.getElementById('urlBox').value = url;
+      let key = JSON.parse(body);
+      document.getElementById('keyBox').value = key;
       console.log();
       fetch(url, {
         method: 'POST',
